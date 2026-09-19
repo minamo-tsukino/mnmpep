@@ -170,18 +170,19 @@ pandoc -s --section-divs --toc --toc-depth=4 -c ./mnmpep/style.css -L ./mnmpep/m
 #### ２．目次左上のタイトルリンク
 
 ```html
-    <a id="titlepage-link" href="./overview.html">mnmpep-readme</a>
+    <a id="titlepage-link" href="./index.html">mnmpep-readme</a>
 ```
 
 ここは 目次の左上に表示されるタイトル兼リンクです。  
+通常は、目次用HTMLをそのまま指定すればよいでしょう。  
 
 - 表示したいタイトル文字
-- クリックしたときに開くページ（通常はトップページ）
+- クリックしたときに開くページ（通常は目次用HTML）
 
 を指定します。  
 
 > 例
-> ```html  <a id="titlepage-link" href="./installation.html">導入方法</a>```
+> ```html  <a id="titlepage-link" href="./index.html">目次</a>```
 
 #### ３．初期表示ページの指定（HOME定数）
 
@@ -190,8 +191,8 @@ pandoc -s --section-divs --toc --toc-depth=4 -c ./mnmpep/style.css -L ./mnmpep/m
   const HOME = "overview.html";
 ```
 
-目次ページを開いたときに、右側の本文エリアに最初に表示するページを指定します。  
-通常は [タイトルリンク](#２タイトルリンク)と同じページで問題ありません。  
+目次ページを開いたときに、本文エリアに最初に表示するページを指定します。  
+表紙として相応しいページのファイル名を記述しましょう。  
 
 #### ４．メニュー構造（detailsタグ）
 
