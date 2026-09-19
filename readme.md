@@ -56,7 +56,7 @@ wordファイルにビルド時のmermaid画像埋め込みを利用される場
 
 ### mnmpepの入手
 
-[こちら](https://github.com/minamo-tsukino/mnmpep/archive/refs/heads/main.zip)からダウンロードしたzipを展開します。  
+[こちら](https://github.com/minamo-tsukino/mnmpep/releases/)からダウンロードしたzipを展開します。  
 展開したフォルダをお使いの端末内に保存しておけば、新たに別のドキュメントを作成する際にコピーして使い回せます。  
 
 ### mnmpepを利用したいドキュメントフォルダへのコピー
