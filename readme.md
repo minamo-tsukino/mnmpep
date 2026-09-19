@@ -56,7 +56,7 @@ wordファイルにビルド時のmermaid画像埋め込みを利用される場
 
 ### mnmpepの入手
 
-[こちら]({ダウンロードリンク})からダウンロードしたzipを展開します。  
+[こちら](https://github.com/minamo-tsukino/mnmpep/archive/refs/heads/main.zip)からダウンロードしたzipを展開します。  
 展開したフォルダをお使いの端末内に保存しておけば、新たに別のドキュメントを作成する際にコピーして使い回せます。  
 
 ### mnmpepを利用したいドキュメントフォルダへのコピー
@@ -71,7 +71,7 @@ wordファイルにビルド時のmermaid画像埋め込みを利用される場
 mnmpepは、下記の内容で構成されています。  
 
 ```
-/mnmpep-project
+/mnmpep-main
 ├─/mnmpep-package
 │ ├─/mnmpep
 │ │ ├─close.svg
@@ -277,8 +277,6 @@ flowchart TD
     D --> E["5. 必要ならサブメニューを入れ子で追加"]
 ```
 
-![目次用HTML編集の流れ](./img/edit-html.svg)
-
 ### mermaidコードブロックを図として埋め込む場合
 
 markdownテキスト内のコードブロック内で、mermaidコードとして記述した内容は、PandocによるHTMLビルド時に指定するluaフィルターによって自動的に、SVG画像に変換されます。  
@@ -368,8 +366,6 @@ flowchart TD
     M --> B
     C --> N
 ```
-
-![HTMLビルド相関図](./img/html-build-model.svg)
 
 ## License
 
