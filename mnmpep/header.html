@@ -1,0 +1,5 @@
+<script src="./mnmpep/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ startOnLoad: true });
+  parent.postMessage({ type: "page-change", page: location.href.split("/").pop() }, "*");
+</script>

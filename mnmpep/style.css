@@ -1,0 +1,617 @@
+@charset "utf-8";
+
+/**
+ * markdown.css
+ *
+ * This program is free software: you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation, either version 3 of the License, or (at your option) any
+ * later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program. If not, see http://gnu.org/licenses/lgpl.txt.
+ *
+ * @project      Weblog and Open Source Projects of Florian Wolters
+ * @version      GIT: $Id$
+ * @package      xhtml-css
+ * @author       Florian Wolters <florian.wolters.85@googlemail.com>
+ * @copyright    2012 Florian Wolters
+ * @cssdoc       version 1.0-pre
+ * @license      http://gnu.org/licenses/lgpl.txt GNU Lesser General Public License
+ * @link         http://github.com/FlorianWolters/jekyll-bootstrap-theme
+ * @media        all
+ * @valid        true
+ */
+
+/* ============================================================
+   1. Root Variables（テーマ・色・レイアウト）
+   ============================================================ */
+:root{
+    --title-height: 58px;
+
+    /* 本文 */
+    --color-text: #000;
+    --color-text-light: #fff;
+    --color-caption: #555577;
+
+    /* 背景 */
+    --color-bg: #fff;
+    --color-header: #FFFFFFA0;
+    --color-bg-alt: #f8f8ff;
+
+    /* アクセント（青系） */
+    --color-accent: #4162C4;
+    --color-accent-light: #D8E0FF;
+    --color-accent-lighter: #E8F0FF;
+
+    /* リンク */
+    --link-text: var(--color-accent);
+    --link-visited: #2A3350;
+
+    /* 境界線 */
+    --color-border: #ccc;
+
+    /* 影 */
+    --color-shadow: lightsteelblue;
+
+    /* 強調（ハイライト） */
+    --color-highlight: #fffa9e;
+
+    /* レイアウト */
+    --body-max-width: 42rem;
+
+    /* 脚注 */
+    --color-sup: darkcyan;
+    --footnote-back: #223;
+
+    /* スクロールバー */
+    --scrollbar-thumb: #bbb;
+    --scrollbar-hover: #999;
+    --scrollbar-button: #666;
+
+    /* コードブロック */
+    --color-code-text: #fff;
+    --color-code-bg: #000;
+
+    /* mermaid */
+    --color-mermaid: #f8f8ff;
+    --color-mermaid-visited: purple;
+}
+
+/* ダークモード */
+@media (prefers-color-scheme: dark){
+    :root{
+        --color-text: #eee;
+        --color-caption: #ccccee;
+        --color-bg: #202030;
+        --color-header: #202030A0;
+        --color-bg-alt: #303040;
+        --color-border: #555;
+        --color-shadow: #000;
+        --color-highlight: #444444;
+
+        --color-accent: #6C8BFF;
+        --color-accent-light: #2A3350;
+        --color-accent-lighter: #1E2538;
+
+        --link-visited: #D8E0FF;
+    }
+}
+
+
+/* ============================================================
+   2. Base Layout（body, html）
+   ============================================================ */
+body {
+    font-family: Helvetica, Arial, Freesans, clean, sans-serif;
+    padding:1em;
+    margin:auto;
+    max-width: var(--body-max-width);
+    color: var(--color-text);
+    background: var(--color-bg);
+    margin: 1rem auto;
+    box-shadow: 0 0 8px 8px var(--color-shadow);
+
+    min-height: calc(100vh - 2rem);
+    box-sizing: border-box;
+}
+
+html{
+    background-color: var(--color-accent-light);
+    scroll-behavior: smooth;
+}
+
+
+/* ============================================================
+   3. Typography（h1〜h6, p, code, pre, a）
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    box-shadow: 0 2px 4px -1px var(--color-shadow);
+}
+
+h1 { font-size: 28px; }
+
+h2 {
+    border-bottom: 1px solid var(--color-border);
+    font-size: 24px;
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+    padding-left: 4px;
+}
+
+h3 {
+    font-size: 18px;
+    border-bottom: 4px solid var(--color-accent);
+}
+
+h4 {
+    font-size: 16px;
+    border-bottom: 3px double var(--color-accent);
+}
+
+h5 {
+    font-size: 14px;
+    padding-left: 4px;
+    border-left: 4px dotted var(--color-accent);
+}
+
+h6 {
+    color: var(--color-caption);
+    background-color: inherit;
+    font-size: 14px;
+}
+
+section{
+    padding-bottom: 1rem;
+}
+
+p{
+    line-height: 1.5em;
+}
+
+code, pre {
+    color: inherit;
+}
+div.sourceCode {
+    background: var(--color-code-bg);
+    color: var(--color-code-text);
+    border-radius: 4px;
+}
+div.sourceCode code {
+    margin: 0 2px;
+    padding: 0 5px;
+    font-size: small;
+    position: static;
+    font-family:
+        "Noto Sans Mono CJK",
+        "ＭＳ ゴシック",
+        "Consolas",
+        "Menlo",
+        "DejaVu Sans Mono",
+        monospace;
+}
+
+pre {
+    line-height: 1.25em;
+    overflow: auto;
+    padding: 6px 10px;
+}
+
+pre > code {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--link-text);
+    background-color: inherit;
+    text-decoration-color: var(--link-text);
+}
+
+a:visited{
+    color: var(--link-visited);
+    text-decoration-color: var(--link-visited);
+}
+
+.author, .date{
+    text-align: right;
+}
+
+.title{
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+
+/* ============================================================
+   4. Tables（table, th, td, tr）
+   ============================================================ */
+table{
+    box-shadow: 0 2px 4px -1px var(--color-shadow);
+}
+
+th{
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+}
+
+tr:nth-child(odd){
+    background-color: var(--color-accent-lighter);
+}
+
+tr:nth-child(even){
+    background-color: var(--color-accent-light);
+}
+
+th, td{
+    padding: 0.25rem;
+}
+
+
+/* ============================================================
+   5. Lists（ul, ol, li）
+   ============================================================ */
+ul, ol{
+    border: 2px var(--color-accent) dashed;
+    border-radius: 4px;
+    background-color: var(--color-accent-lighter);
+    box-shadow: 0 2px 4px -1px var(--color-shadow);
+    padding-right: 0.25rem;
+}
+
+p, blockquote, ul, ol, dl, li, table, pre {
+    margin: 15px 0;
+}
+
+
+/* ============================================================
+   6. Images & Figures（img, figure, figcaption, embed）
+   ============================================================ */
+img{
+    max-width: 100%;
+    max-height: fit-content;
+    box-shadow: 0 2px 4px -1px var(--color-shadow);
+}
+
+figure{
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+figcaption{
+    font-size: 0.8rem;
+    color: var(--color-caption);
+}
+
+embed{
+    display: block;
+    width: 90%;
+    margin: auto;
+}
+
+/* ============================================================
+   7. Blockquote（引用）
+   ============================================================ */
+blockquote{
+    padding-left: 1rem;
+    background-color: var(--color-accent-lighter);
+    border-left: 2px solid var(--color-accent);
+}
+
+
+/* ============================================================
+   8. TOC（目次固定レイアウト）
+   ============================================================ */
+#TOC{
+    position: fixed;
+    right: calc(50% + ((var(--body-max-width) / 2) + 2rem));
+    top: 1rem;
+    width: calc(50% - var(--body-max-width) / 2 - 2rem);
+    max-width: 25rem;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: calc(100vh - 2rem);
+    font-size: small;
+    box-shadow: 0 0 8px 8px var(--color-shadow);
+    background-color: var(--color-bg);
+    transition-duration: 0.2s;
+    transition-property: all;
+}
+#TOC ul, #TOC li{
+    padding: 0 0.5rem;
+    margin: 4px 0;
+}
+#TOC ul{
+    border: none;
+    border-radius: 0;
+    list-style-type: none;
+    box-shadow: none;
+    background-color: var(--color-bg);
+}
+@media screen and (max-width:1200px){
+    #TOC{
+        left: -14.7rem;
+        /* left: -49%; */
+        width: 15rem;
+        font-size: medium;
+    }
+    #TOC:hover{
+        left: 0;   
+    }
+}
+
+/* ============================================================
+   9. Print Styles（印刷用）
+   ============================================================ */
+@media print{
+    body{
+        background: none;
+    }
+    body, h1, h2, h3, h4, h5, h6 ,ul, ol, img, hr, table{
+        box-shadow: none;
+    }
+    th, td{
+        border: 2px solid var(--color-border);
+    }
+    h2{
+        color: var(--color-text);
+    }
+    #TOC{
+        position: static;
+        width: 100%;
+        max-width: 100%;
+        height: fit-content;
+        box-shadow: none;
+    }
+}
+
+
+/* ============================================================
+   10. Page Transition（View Transition API）
+   ============================================================ */
+@view-transition {
+    navigation: auto;
+}
+
+@keyframes move-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes move-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+::view-transition-old(root) {
+    animation: 0.4s ease-in both move-out;
+}
+
+::view-transition-new(root) {
+    animation: 0.4s ease-in both move-in;
+}
+
+.anime-wrapper{
+    view-transition-name: page-trans;
+}
+
+
+/* ============================================================
+   11. Image Modal System（画像モーダル）
+   ============================================================ */
+.fc{
+    font-size: 0.8rem;
+    display: block;
+    color: var(--color-caption);
+}
+
+.clsbtn{
+    display: none;
+}
+
+.clsbtn img{
+    box-shadow: none;
+    width: 32px;
+    height: 32px;
+}
+
+p:has(> a:target > img), p:has(> a:target > embed){
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    transition: background-color 0.4s, backdrop-filter 0.4s;
+}
+
+p:has(> a:target > img) > a, p:has(> a:target > embed) > a{
+    margin: auto;
+    background-color: transparent;
+}
+
+p:has(> a:target > embed) > a{
+    width: 100%;
+    height: 90%;
+}
+
+p:has(> a:target > img) img{
+    display: block;
+    margin: auto;
+}
+
+p:has(> a:target > embed) embed{
+    display: block;
+    margin: auto;
+    max-height: 90vh;
+    max-width: 90vw;
+    height: 100%;
+    width: 100%;
+}
+
+p:has( .fc){
+    text-align: center;
+    line-height: 1rem;
+}
+
+p:has(> a:target) .fc{
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    line-height: 2.5rem;
+    overflow-y: auto;
+    max-height: 10%;
+    max-width: 100%;
+}
+
+p:has(> a:target) .clsbtn{
+    display: inline;
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+}
+
+p:has(> a:target > embed) .clsbtn{
+    top: 90%;
+    inline-size: 32px;
+}
+
+
+/* ============================================================
+   12. Footnote Popup System（脚注ポップアップ）
+   ============================================================ */
+a:has(> sup), a:visited:has(> sup){
+    color: var(--color-sup);
+}
+
+@keyframes move-cip {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+li:has( .footnote-back):target{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    opacity: 1;
+    animation: 0.3s ease-in both move-cip;
+}
+
+li:has( .footnote-back):target p{
+    padding: 0.5rem 0.5rem 2.5rem 0.5rem;
+    z-index: 10;
+    margin: 0;
+    background: var(--footnote-back);
+    color: var(--color-text-light);
+    border: solid 1px var(--color-border);
+    box-shadow: 0 0 2px 2px var(--color-shadow);
+    font-size: small;
+}
+
+li:has( .footnote-back):target .footnote-back{
+    background-color: transparent;
+    block-size: 100vh;
+    inline-size: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    z-index: -11;
+}
+
+
+/* ============================================================
+   13. Scrollbar（スクロールバー）
+   ============================================================ */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-alt);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-hover);
+}
+
+::-webkit-scrollbar-button {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-bottom: 6px solid var(--scrollbar-button);
+}
+
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-top: 6px solid var(--scrollbar-button);
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+  border-right: 6px solid var(--scrollbar-button);
+}
+
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+  border-left: 6px solid var(--scrollbar-button);
+}
+
+
+/* ============================================================
+   14. Section Highlight（ページ内リンクの強調）
+   ============================================================ */
+h2:target,
+h3:target,
+h4:target,
+h5:target,
+h6:target,
+section:target {
+    animation: blink 2s ease-out 1;
+}
+
+@keyframes blink {
+    0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { background-color: transparent; }
+    5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% { background-color: var(--color-highlight); }
+}
+
+/* ============================================================
+   15. Mermaid
+   ============================================================ */
+
+.mermaid{
+    background: var(--color-mermaid);
+    text-align: center;
+}
+
+.mermaid a:visited{
+    color: var(--color-mermaid-visited);
+    text-decoration-color: var(--color-mermaid-visited);
+}

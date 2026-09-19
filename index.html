@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>sample</title>
+  <style>
+    :root{
+        --title-height: 58px;
+
+        /* 本文 */
+        --color-text: #000;
+        --color-text-light: #fff;
+        --color-caption: #555577;
+
+        /* 背景 */
+        --color-bg: #fff;
+        --color-header: #FFFFFFA0;
+        --color-bg-alt: #f8f8ff;
+
+        /* アクセント（青系） */
+        --color-accent: #4162C4;
+        --color-accent-light: #D8E0FF;
+        --color-accent-lighter: #E8F0FF;
+
+        /* リンク */
+        --link-text: var(--color-accent);
+        --link-visited: #2A3350;
+
+        /* 境界線 */
+        --color-border: #ccc;
+
+        /* 影 */
+        --color-shadow: lightsteelblue;
+
+        /* 強調（ハイライト） */
+        --color-highlight: #fffa9e;
+
+        /* レイアウト */
+        --body-max-width: 42rem;
+
+        /* 脚注 */
+        --color-sup: darkcyan;
+        --footnote-back: #223;
+
+        /* スクロールバー */
+        --scrollbar-thumb: #bbb;
+        --scrollbar-hover: #999;
+        --scrollbar-button: #666;
+    }
+
+    /* ダークモード */
+    @media (prefers-color-scheme: dark){
+        :root{
+            --color-text: #eee;
+            --color-caption: #ccccee;
+            --color-bg: #202030;
+            --color-header: #202030A0;
+            --color-bg-alt: #303040;
+            --color-border: #555;
+            --color-shadow: #000;
+            --color-highlight: #444444;
+
+            --color-accent: #6C8BFF;
+            --color-accent-light: #2A3350;
+            --color-accent-lighter: #1E2538;
+
+            --link-visited: #D8E0FF;
+        }
+    }
+    body{
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: var(--color-bg);
+    }
+    .mokuzi {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      height: 2rem;
+      width: 100%;
+
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      background-color: var(--color-header);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 4px var(--color-shadow);
+      font-size: 0.8rem;
+      z-index: 9999;
+    }
+    .mokuzi details div{
+      margin: 0;
+      padding: 0.25rem 1.5rem;
+    }
+    .mokuzi details details{
+      padding-left: 1.5rem;
+    }
+    .menu-frame{
+      padding: 0 1rem;
+      padding-top: 0.5rem;
+      display: flex;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      justify-content: space-evenly;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+    .menu-frame a{
+      width: min-content;
+    }
+    .mokuzi details{
+        text-decoration-line: underline;
+        cursor: pointer;
+    }
+    .mokuzi:hover{
+      height: auto;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+    @media screen and (max-width: 1200px) {
+      .menu-frame{
+        flex-direction: column;
+        overflow-y: hidden;
+      }
+      .mokuzi:hover .menu-frame{
+        overflow-y: auto;
+      }
+      .mokuzi details{
+        padding-top: 0.5rem;
+      }
+    }
+    iframe{
+      border: none;
+      margin-top: 2rem;
+      box-sizing: border-box;
+      width: 100%;
+      height: calc(100vh - 2rem);
+    }
+    summary{
+      color: var(--color-text);
+      text-decoration: underline var(--color-text);
+    }
+    a {
+      color: var(--link-text);
+      background-color: inherit;
+      text-decoration: none;
+    }
+
+    a:visited{
+        color: var(--link-visited);
+    }
+
+  </style>
+</head>
+<body>
+<nav class="mokuzi">
+  <nav class="menu-frame">
+    <a id="titlepage-link" href=""></a>
+    <details>
+        <summary></summary>
+        <div><a href="" target="page-frame"></a></div>
+    </details>
+  </nav>
+</nav>
+<iframe src="" name="page-frame"></iframe>
+<script>
+  // クエリパラメーター(パラメーター名:"page")付きでアクセスした時の、本文表示部分(iframe)遷移処理
+  const HOME = "";
+  const params = new URLSearchParams(location.search);
+  const page = params.get("page")||HOME;
+  const iframe = document.getElementsByTagName("iframe")[0];
+  iframe.src = page;
+  // 目次内のリンクによるiframe遷移時の、遷移先のクエリパラメーター反映処理
+  document.querySelectorAll("a[target='page-frame']").forEach(a => {
+    a.onclick = (e) => {
+      const url = new URL(location.href);
+      const param = a.href.split("/").pop();
+      url.searchParams.set("page", param);
+      history.replaceState({}, "", url);
+    }
+  });
+  // 子ページ内での遷移先をクエリパラメーターに反映させるためのメッセージ受信イベント処理
+  window.addEventListener("message", e => {
+    if (e.data?.type === "page-change") {
+      const url = new URL(location.href);
+      url.searchParams.set("page", e.data.page);
+      history.replaceState({}, "", url);
+    }
+  });
+</script>
+</body>
+</html>
